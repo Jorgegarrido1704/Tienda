@@ -1,0 +1,103 @@
+<html>  
+<head>  
+    <title>Login</title>  
+    <link rel = "stylesheet" type = "text/css" href = "indexstyle.css">   
+    <link rel="shortcut icon" href="../main/fth.ico" type="image/x-icon">
+
+</head>  
+<body>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+#title {
+    margin-top: 100px;
+}
+
+#frm {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    margin: 0 auto;
+}
+
+form p {
+    margin: 10px 0;
+}
+
+label {
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+    margin-right: 10px;
+}
+
+input[type="text"],
+input[type="password"] {
+    padding: 8px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Add more styles as needed */
+
+    </style>
+    
+    <div align="center" id="title">
+    <h1>Ingresa tus credenciales</h1>  
+    <div id = "frm">  
+    
+        <form name="f1" action = "log/login.php" onsubmit = "return validation()" method = "POST">  
+            <p>  
+                <label> Usuario: </label>  
+                <input type = "text" id ="user" name  = "user" />  
+            </p>  
+            <p>  
+                <label> Password: </label>  
+                <input type = "password" id ="pass" name  = "pass" />  
+            </p>  
+            <p align="center">     
+                <input type =  "submit" id = "btn" value = "Login" />  
+            </p>  
+        </form>  
+    
+    </div>  </div>
+    <script>  
+            function validation()  
+            {  
+                var id=document.f1.user.value;  
+                var ps=document.f1.pass.value;  
+                if(id.length=="" && ps.length=="") {  
+                    alert("User Name and Password fields are empty");  
+                    return false;  
+                }  
+                else if (id.length=="") {  
+                        alert("User Name is empty");  
+                        return false;  
+                    }   
+                   if (ps.length=="") {  
+                    alert("Password field is empty");  
+                    return false;  
+                    }  }
+        </script>  
+</body>     
+</html>  
