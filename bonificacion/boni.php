@@ -58,31 +58,22 @@ td{
                    $months=(int)date("m");
                    $year=(int)date("y");
 
-                 echo $montsini."-".$yearini;
-                   echo "<br>".(int)$months."-".(int)$year; 
+                 //echo $montsini."-".$yearini;
+                  // echo "<br>".(int)$months."-".(int)$year; 
                    $compyear=$year-$yearini;
                    if($compyear==0){
                     $totalm=$months-$montsini;
                    }else if($compyear>0){
-                    $totalm=(12-$montsini)+$months;
-                   }
-                  echo "<br>".$totalm."<br>";
-                    
-                    //Get the total number of months
-                 
-                    
+                    $totalm=(12-$montsini)+$months; }
+                  //echo "<br>".$totalm."<br>";                    
                     if($totalm>0){
-                    $inv=mysqli_query($con,"SELECT * FROM inventario WHERE product like '$art'");}else if($totalm==0){
-                        $inv=mysqli_query($con,"SELECT * FROM inventario WHERE product like '$art'");
+                    $inv=mysqli_query($con,"SELECT * FROM inventario WHERE product like '$art'");
                     while($rowart=mysqli_fetch_array($inv)){
-                        $precioart=$rowart['CONTADO'];
-                       echo $precioart;
+                        $precioart=$rowart['precio'.$totalm];
+                    //   echo $precioart;
                         $ahorro=$precio-$precioart;
                         $total=$saldo-$ahorro;
-                    }
-                   
-                   
-                   ?>
+                    }                   ?>
                     <tr>
                         <td><?php echo $cuenta;?></td>
                         <td><?php echo $cliente; ?></td>
