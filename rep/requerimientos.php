@@ -190,6 +190,43 @@ While($row=mysqli_fetch_array($buscarventa)){
         
         $t++;
     }
+    $sheet8 = $spreadsheet->createSheet();
+    $sheet8->setTitle('Clientes');
+    $sheet8->setCellValue('A1','Cliente' );
+    $sheet8->setCellValue('B1', 'domicilio');
+    $sheet8->setCellValue('C1', 'Colonia');
+    $sheet8->setCellValue('D1', 'Pariente');
+    $sheet8->setCellValue('E1', 'Aval');
+    $sheet8->setCellValue('F1','Domicilio Aval' );
+    $sheet8->setCellValue('G1', 'Referencia 1');
+    $sheet8->setCellValue('H1', 'Domicilio Referencia 1');
+    $sheet8->setCellValue('I1', 'Referencia 2');
+    $sheet8->setCellValue('J1', 'Domicilio Referencia 2');
+    $t=2;
+    $buscarventa=mysqli_query($con,"SELECT DISTINCT * FROM  historico");
+    While($row=mysqli_fetch_array($buscarventa)){
+        $cliente=$row['cliente'];
+        $dom=$row['domcli'];
+        $col=$row['col'];
+        $aval=$row['aval'];
+        $domAval=$row['domaval'];
+        $pariente=$row['espo'];
+        $ref1=$row['ref1'];
+        $domref1=$row['domref1'];
+        $ref2=$row['ref2'];
+        $domref2=$row['domre2'];          
+        $sheet8->setCellValue('A'.$t, $cliente );
+        $sheet8->setCellValue('B'.$t, $dom );
+        $sheet8->setCellValue('C'.$t, $col );
+        $sheet8->setCellValue('D'.$t, $pariente );
+        $sheet8->setCellValue('E'.$t, $aval );
+        $sheet8->setCellValue('F'.$t, $domAval );
+        $sheet8->setCellValue('G'.$t, $ref1 );
+        $sheet8->setCellValue('H'.$t, $domref1 );
+        $sheet8->setCellValue('I'.$t, $ref2 );
+        $sheet8->setCellValue('J'.$t, $domref2 );
+        $t++;
+    }
 
 
 $week = date('W');
