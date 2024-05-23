@@ -8,9 +8,9 @@ if(!$_SESSION['usuario']){
     $qry="";
 $cuenta=isset($_POST['buscu'])?$_POST['buscu']:"";
 $client=isset($_POST['buscl'])?$_POST['buscl']:"";
-if($cuenta!="" and $client!=""){$qry=mysqli_query($con,"SELECT * FROM venta WHERE cliente Like '%%$client%%' AND cuenta  LIKE '%%$cuenta%%'");}
-else if($cuenta!=""){$qry=mysqli_query($con,"SELECT * FROM venta WHERE cuenta  LIKE '%%$cuenta%%'");}
-else if($client!=""){$qry=mysqli_query($con,"SELECT * FROM venta WHERE cliente Like '%%$client%%' ");}
+if($cuenta!="" and $client!=""){$qry=mysqli_query($con,"SELECT * FROM venta WHERE cliente Like '%%$client%%' AND cuenta  LIKE '%%$cuenta%%' AND saldo>0");}
+else if($cuenta!=""){$qry=mysqli_query($con,"SELECT * FROM venta WHERE cuenta  LIKE '%%$cuenta%%' AND saldo>0");}
+else if($client!=""){$qry=mysqli_query($con,"SELECT * FROM venta WHERE cliente Like '%%$client%%' AND saldo>0 ");}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -132,9 +132,9 @@ input[type="number"]{ width: 70px;}
             </thead>
             <tbody>
             <?php 
-        if($cuenta!="" and $client!=""){$qry=mysqli_query($con,"SELECT * FROM venta WHERE cliente Like '%%$client%%' AND cuenta  LIKE '%%$cuenta%%'");}
-        else if($cuenta!=""){$qry=mysqli_query($con,"SELECT * FROM venta WHERE cuenta  LIKE '%%$cuenta%%'");}
-        else if($client!=""){$qry=mysqli_query($con,"SELECT * FROM venta WHERE cliente Like '%%$client%%' ");}
+        if($cuenta!="" and $client!=""){$qry=mysqli_query($con,"SELECT * FROM venta WHERE cliente Like '%%$client%%' AND cuenta  LIKE '%%$cuenta%%' AND saldo>0");}
+        else if($cuenta!=""){$qry=mysqli_query($con,"SELECT * FROM venta WHERE cuenta  LIKE '%%$cuenta%%' AND saldo>0");}
+        else if($client!=""){$qry=mysqli_query($con,"SELECT * FROM venta WHERE cliente Like '%%$client%%' AND saldo>0 ");}
         while($row=mysqli_fetch_array($qry)){
             $id=$row['id'];
             $client=$row['cliente'];

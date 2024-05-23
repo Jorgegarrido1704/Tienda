@@ -47,11 +47,38 @@ While($row=mysqli_fetch_array($buscarventa)){
     $sheet->setCellValue('E'.$t, $enganche );
     $sheet->setCellValue('F'.$t, $saldo );
    
-    
-  
     $t++;
     }
-
+    $sheet1 = $spreadsheet->createSheet();
+    $sheet1->setTitle('Ventas-Contado');
+    $sheet1->setCellValue('A1','Fecha' );
+    $sheet1->setCellValue('B1', 'Cliente');
+    $sheet1->setCellValue('C1', 'Cuenta');
+    $sheet1->setCellValue('D1', 'Total');
+    $sheet1->setCellValue('E1', 'Enganche');
+    $sheet1->setCellValue('F1', 'Estatus');
+    
+    
+    $t=2;
+    
+    $buscarventa=mysqli_query($con,"SELECT * FROM  historico WHERE  meses=0");
+    While($row=mysqli_fetch_array($buscarventa)){
+        $fecha=$row['fecha'];
+        $cliente=$row['cliente'];
+        $cuenta=$row['cuenta'];
+        $total=$row['precio'];
+        $enganche=$row['enganche'];
+       
+          
+        $sheet1->setCellValue('A'.$t, $fecha );
+        $sheet1->setCellValue('B'.$t, $cliente );
+        $sheet1->setCellValue('C'.$t, $cuenta );
+        $sheet1->setCellValue('D'.$t, $total );
+        $sheet1->setCellValue('E'.$t, $enganche );
+        $sheet1->setCellValue('F'.$t, 'Contado' );
+       
+        $t++;
+        }
     $sheet2 = $spreadsheet->createSheet();
     $sheet2->setTitle('Ventas-Articulos');
     $sheet2->setCellValue('A1','Fecha' );
