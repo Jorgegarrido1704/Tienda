@@ -255,6 +255,132 @@ While($row=mysqli_fetch_array($buscarventa)){
         $t++;
     }
 
+    $buscarRuta=mysqli_query($con,"SELECT DISTINCT ruta FROM  venta");
+    while($row=mysqli_fetch_array($buscarRuta)){
+        $ruta=$row['ruta'];
+        
+    
+    $sheet8 = $spreadsheet->createSheet();
+    $sheet8->setTitle('Ruta'.$ruta);
+    $sheet8->setCellValue('A1','Cantidad de articulos' );
+    $sheet8->setCellValue('B1', 'Articulo');
+    $sheet8->setCellValue('C1', 'Precio');
+    $sheet8->setCellValue('D1', 'enganche');
+    $sheet8->setCellValue('E1', 'Mensualidades');
+    $sheet8->setCellValue('F1','Pago semanal' );
+    $sheet8->setCellValue('G1', 'Cliente');
+    $sheet8->setCellValue('H1', 'Numero de Cuenta');
+    $sheet8->setCellValue('I1', 'Fecha de Compra');
+    $t=2;
+    $buscarventa=mysqli_query($con,"SELECT  * FROM  venta WHERE ruta='$ruta'");
+    While($row=mysqli_fetch_array($buscarventa)){
+
+        $articulo=$row['articulo'];
+        $precio=$row['precio'];
+        $enganche=$row['enganche'];
+        $semanal=$row['semanal'];
+        $meses=$row['meses'];
+        $cliente=$row['cliente'];
+       $numCuenta=$row['cuenta'];    
+       $fecha=$row['fecha'];     
+        $sheet8->setCellValue('A'.$t, '1');
+        $sheet8->setCellValue('B'.$t, $articulo );
+        $sheet8->setCellValue('C'.$t, $precio );
+        $sheet8->setCellValue('D'.$t, $enganche );
+        $sheet8->setCellValue('E'.$t, $meses );
+        $sheet8->setCellValue('F'.$t, $semanal );
+        $sheet8->setCellValue('G'.$t, $cliente );
+        $sheet8->setCellValue('H'.$t, $numCuenta );
+        $sheet8->setCellValue('I'.$t, $fecha );
+        $t++;
+    }  
+    }
+
+    
+    $buscarRuta=mysqli_query($con,"SELECT DISTINCT promotor FROM  venta WHERE promotor!=''");
+    while($row=mysqli_fetch_array($buscarRuta)){
+        $ruta=$row['promotor'];
+        $datos=explode(" ", $ruta);
+        $name=$datos[0]." ".$datos[1];       
+    
+    $sheet8 = $spreadsheet->createSheet();
+    $sheet8->setTitle('Prom. '.$name);
+    $sheet8->setCellValue('A1','Cantidad de articulos' );
+    $sheet8->setCellValue('B1', 'Articulo');
+    $sheet8->setCellValue('C1', 'Precio');
+    $sheet8->setCellValue('D1', 'enganche');
+    $sheet8->setCellValue('E1', 'Mensualidades');
+    $sheet8->setCellValue('F1','Pago semanal' );
+    $sheet8->setCellValue('G1', 'Cliente');
+    $sheet8->setCellValue('H1', 'Numero de Cuenta');
+    $sheet8->setCellValue('I1', 'Fecha de Compra');
+    $t=2;
+    $buscarventa=mysqli_query($con,"SELECT  * FROM  venta WHERE promotor='$ruta'");
+    While($row=mysqli_fetch_array($buscarventa)){
+
+        $articulo=$row['articulo'];
+        $precio=$row['precio'];
+        $enganche=$row['enganche'];
+        $semanal=$row['semanal'];
+        $meses=$row['meses'];
+        $cliente=$row['cliente'];
+       $numCuenta=$row['cuenta'];    
+       $fecha=$row['fecha'];     
+        $sheet8->setCellValue('A'.$t, '1');
+        $sheet8->setCellValue('B'.$t, $articulo );
+        $sheet8->setCellValue('C'.$t, $precio );
+        $sheet8->setCellValue('D'.$t, $enganche );
+        $sheet8->setCellValue('E'.$t, $meses );
+        $sheet8->setCellValue('F'.$t, $semanal );
+        $sheet8->setCellValue('G'.$t, $cliente );
+        $sheet8->setCellValue('H'.$t, $numCuenta );
+        $sheet8->setCellValue('I'.$t, $fecha );
+        $t++;
+    }  
+    }
+    
+    $buscarRuta=mysqli_query($con,"SELECT DISTINCT vendedor FROM  venta WHERE vendedor!=''");
+    while($row=mysqli_fetch_array($buscarRuta)){
+        $ruta=$row['vendedor'];
+        $datos=explode(" ", $ruta);
+        $name=$datos[0]." ".$datos[1];    
+        
+    
+    $sheet8 = $spreadsheet->createSheet();
+    $sheet8->setTitle('Vend '.$name);
+    $sheet8->setCellValue('A1','Cantidad de articulos' );
+    $sheet8->setCellValue('B1', 'Articulo');
+    $sheet8->setCellValue('C1', 'Precio');
+    $sheet8->setCellValue('D1', 'enganche');
+    $sheet8->setCellValue('E1', 'Mensualidades');
+    $sheet8->setCellValue('F1','Pago semanal' );
+    $sheet8->setCellValue('G1', 'Cliente');
+    $sheet8->setCellValue('H1', 'Numero de Cuenta');
+    $sheet8->setCellValue('I1', 'Fecha de Compra');
+    $t=2;
+    $buscarventa=mysqli_query($con,"SELECT  * FROM  venta WHERE vendedor='$ruta'");
+    While($row=mysqli_fetch_array($buscarventa)){
+
+        $articulo=$row['articulo'];
+        $precio=$row['precio'];
+        $enganche=$row['enganche'];
+        $semanal=$row['semanal'];
+        $meses=$row['meses'];
+        $cliente=$row['cliente'];
+       $numCuenta=$row['cuenta'];    
+       $fecha=$row['fecha'];     
+        $sheet8->setCellValue('A'.$t, '1');
+        $sheet8->setCellValue('B'.$t, $articulo );
+        $sheet8->setCellValue('C'.$t, $precio );
+        $sheet8->setCellValue('D'.$t, $enganche );
+        $sheet8->setCellValue('E'.$t, $meses );
+        $sheet8->setCellValue('F'.$t, $semanal );
+        $sheet8->setCellValue('G'.$t, $cliente );
+        $sheet8->setCellValue('H'.$t, $numCuenta );
+        $sheet8->setCellValue('I'.$t, $fecha );
+        $t++;
+    }  
+    }
 
 $week = date('W');
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');

@@ -88,10 +88,15 @@ td{
     text-align: center;
     border-bottom: 1px lightblue solid;
 }
+img{
+    width: 50px;
+    height: 50px;
+}
 </style>
 </head>
 <body>
-<div><small><a href="clientes.php"><button>Atras</button></a></small></div>
+<div><small><a href="clientes.php"><button>Atras</button></a></small>
+<button><a href="abonosCli.php?cuenta=<?php echo $cuenta?>"><img src="excel.jpg" alt="" id="excel_client"></a></button></div>
     <div align="center"><h1>Formato de abono</h1></div>
 <table>
     <thead>
