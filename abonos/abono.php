@@ -164,7 +164,7 @@ img{
                 <?php 
                 $i=0;
                 $fechas=[];
-                $buscarFecha=mysqli_query($con,"SELECT fechab FROM abonos WHERE cuenta='$cuenta' and client='$cli' ");
+                $buscarFecha=mysqli_query($con,"SELECT fechab FROM abonos WHERE cuenta='$cuenta' ");
                 while($rowfecha=mysqli_fetch_array($buscarFecha)){
                     $fechas[$i]=strtotime($fechabonos=$rowfecha['fechab']);
                     $i++;
@@ -175,7 +175,7 @@ img{
                 
                 for($i=0;$i<count($fechas);$i++){
                     $datesab=date("d-m-Y",$fechas[$i]);
-                $qry=mysqli_query($con,"SELECT * FROM abonos WHERE cuenta='$cuenta'  ");
+                $qry=mysqli_query($con,"SELECT * FROM abonos WHERE cuenta='$cuenta' and fechab='$datesab' ");
                 while($rowab=mysqli_fetch_array($qry)){
                     $id=$rowab['id'];
                     $cuenta=$rowab['cuenta'];
