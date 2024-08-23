@@ -22,8 +22,7 @@ if($cli!="" and $abono!="" and $resto!=""){
     if($sqy){
         $sqy=mysqli_query($con,"INSERT INTO `abonos`( `cuenta`, `client`, `fechab`, `abono`, `NoRec`) VALUES ('$cuenta','$cli','$today','$abono','$recibo')");
     }
-    
-    
+        
     $sqyventa=mysqli_query($con,"SELECT * FROM venta WHERE cuenta='$cuenta' and cliente='$cli' and saldo>0 ORDER BY saldo asc");
     $rowsnum=mysqli_num_rows($sqyventa);
     While($rowvv=mysqli_fetch_array($sqyventa)){
@@ -176,7 +175,7 @@ img{
                 
                 for($i=0;$i<count($fechas);$i++){
                     $datesab=date("d-m-Y",$fechas[$i]);
-                $qry=mysqli_query($con,"SELECT * FROM abonos WHERE cuenta='$cuenta' and client='$cli' and fechab='$datesab' ");
+                $qry=mysqli_query($con,"SELECT * FROM abonos WHERE cuenta='$cuenta' and fechab='$datesab' ");
                 while($rowab=mysqli_fetch_array($qry)){
                     $id=$rowab['id'];
                     $cuenta=$rowab['cuenta'];
