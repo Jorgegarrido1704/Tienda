@@ -86,7 +86,7 @@ img{
                 else if($cuenta!=""){
                     $qry=mysqli_query($con,"SELECT * FROM historico WHERE cuenta LIKe'%%$cuenta%%'  ORDER BY fecha ASC  ");}
                     else{
-        $qry=mysqli_query($con,"SELECT * FROM historico WHERE saldo>'0' ORDER BY cuenta ASC ");}
+        $qry=mysqli_query($con,"SELECT * FROM historico WHERE saldo>'0' and nulo!='Cancelada' ORDER BY cuenta ASC ");}
         while($row=mysqli_fetch_array($qry)){
             $cuenta=$row['cuenta'];
             $client=$row['cliente'];
