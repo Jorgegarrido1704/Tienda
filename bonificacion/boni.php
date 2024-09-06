@@ -67,7 +67,7 @@ td{
                     $totalm=(12-$montsini)+$months; }
                   //echo "<br>".$totalm."<br>";                    
                     if($totalm>0){
-                    $inv=mysqli_query($con,"SELECT * FROM inventario WHERE product like '$art'");
+                    $inv=mysqli_query($con,"SELECT * FROM inventario WHERE product = '$art'");
                     while($rowart=mysqli_fetch_array($inv)){
                         $precioart=$rowart['precio'.$totalm];
                     //   echo $precioart;
