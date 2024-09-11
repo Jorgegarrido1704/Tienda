@@ -58,7 +58,17 @@ While($row=mysqli_fetch_array($buscarventa)){
     $sheet->setCellValue('C'.$t, 'Numero de recibo');
 $t++;
 
-    $buscarventa=mysqli_query($con,"SELECT * FROM  abonos WHERE  cuenta='$cuenta' ORDER BY fechab desc");
+$i=0;
+$fechas=[];
+$buscarFecha=mysqli_query($con,"SELECT fechab FROM abonos WHERE cuenta='$cuenta' ");
+while($rowfecha=mysqli_fetch_array($buscarFecha)){
+    $fechas[$i]=strtotime($rowfecha['fechab']);
+    $i++;
+}    
+sort($fechas);
+for($i=0;$i<count($fechas);$i++){
+    $datesab=date("d-m-Y",$fechas[$i]);
+    $buscarventa=mysqli_query($con,"SELECT * FROM  abonos WHERE  cuenta='$cuenta' and fechab='$datesab'");
     While($row=mysqli_fetch_array($buscarventa)){
         $fecha=$row['fechab'];
         $cliente=$row['abono'];
@@ -68,7 +78,7 @@ $t++;
         $sheet->setCellValue('B'.$t, $cliente );
         $sheet->setCellValue('C'.$t, $cuenta );
         $t++;
-    }
+    }}
 
 $week = date('W');
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
