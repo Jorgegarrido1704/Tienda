@@ -57,28 +57,27 @@ While($row=mysqli_fetch_array($buscarventa)){
     $sheet->setCellValue('B'.$t, 'Cantidad de abono');
     $sheet->setCellValue('C'.$t, 'Numero de recibo');
 $t++;
-
-$i=0;
-$fechas=[];
-$buscarFecha=mysqli_query($con,"SELECT fechab FROM abonos WHERE cuenta='$cuenta' ");
-while($rowfecha=mysqli_fetch_array($buscarFecha)){
-    $fechas[$i]=strtotime($rowfecha['fechab']);
-    $i++;
-}    
+$fechas = [];
+$buscarFecha = mysqli_query($con, "SELECT fechab FROM abonos WHERE cuenta='$cuenta'");
+while ($rowfecha = mysqli_fetch_array($buscarFecha)) {
+    $fechas[] = strtotime($rowfecha['fechab']);
+}
 sort($fechas);
-for($i=0;$i<count($fechas);$i++){
-    $datesab=date("d-m-Y",$fechas[$i]);
-    $buscarventa=mysqli_query($con,"SELECT * FROM  abonos WHERE  cuenta='$cuenta' and fechab='$datesab'");
-    While($row=mysqli_fetch_array($buscarventa)){
-        $fecha=$row['fechab'];
-        $cliente=$row['abono'];
-        $cuenta=$row['NoRec'];
-          
-        $sheet->setCellValue('A'.$t, $fecha );
-        $sheet->setCellValue('B'.$t, $cliente );
-        $sheet->setCellValue('C'.$t, $cuenta );
+
+foreach ($fechas as $fechaTimestamp) {
+    $datesab = date("d-m-Y", $fechaTimestamp);
+    $buscarabonos = mysqli_query($con, "SELECT * FROM abonos WHERE cuenta='$cuenta' AND fechab='$datesab'");
+    while ($row = mysqli_fetch_array($buscarabonos)) {
+        $fecha = $row['fechab'];
+        $abono = $row['abono'];
+        $noRec = $row['NoRec'];
+
+        $sheet->setCellValue('A' . $t, $fecha);
+        $sheet->setCellValue('B' . $t, $abono);
+        $sheet->setCellValue('C' . $t, $noRec);
         $t++;
-    }}
+    }
+}
 
 $week = date('W');
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
