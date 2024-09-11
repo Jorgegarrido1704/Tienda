@@ -58,8 +58,8 @@ td{
                    $months=(int)date("m");
                    $year=(int)date("y");
 
-                 //echo $montsini."-".$yearini;
-                  // echo "<br>".(int)$months."-".(int)$year; 
+                 //echo $montsini."-".$yearini."-".$art."<br>";
+                  //echo "<br>".(int)$months."-".(int)$year."<br>"; 
                    $compyear=$year-$yearini;
                    if($compyear==0){
                     $totalm=$months-$montsini;
@@ -67,7 +67,7 @@ td{
                     $totalm=(12-$montsini)+$months; }
                   //echo "<br>".$totalm."<br>";                    
                     if($totalm>0){
-                    $inv=mysqli_query($con,"SELECT * FROM inventario WHERE product like '$art'");
+                    $inv=mysqli_query($con,"SELECT * FROM inventario WHERE product LIKE '%%$art%%'");
                     while($rowart=mysqli_fetch_array($inv)){
                         $precioart=$rowart['precio'.$totalm];
                     //   echo $precioart;
