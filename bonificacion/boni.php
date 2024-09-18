@@ -66,12 +66,12 @@ td{
                    }else if($compyear>0){
                     $totalm=(12-$montsini)+$months; }
                   //echo "<br>".$totalm."<br>";                    
-                    if($totalm>0){
-<<<<<<< HEAD
-                    $inv=mysqli_query($con,"SELECT * FROM inventario WHERE product LIKE '%%$art%%'");
-=======
+                    if($totalm>0 and $totalm<13){
+
+                  //  $inv=mysqli_query($con,"SELECT * FROM inventario WHERE product LIKE '%%$art%%'");
+
                     $inv=mysqli_query($con,"SELECT * FROM inventario WHERE product = '$art'");
->>>>>>> 46b478afe64a851f66eddb3bc35509e9c0ded613
+
                     while($rowart=mysqli_fetch_array($inv)){
                         $precioart=$rowart['precio'.$totalm];
                     //   echo $precioart;

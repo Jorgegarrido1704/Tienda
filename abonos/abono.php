@@ -175,7 +175,7 @@ img{
                 
                 for($i=0;$i<count($fechas);$i++){
                     $datesab=date("d-m-Y",$fechas[$i]);
-                $qry=mysqli_query($con,"SELECT * FROM abonos WHERE cuenta='$cuenta' and fechab='$datesab' ");
+    $qry=mysqli_query($con,"SELECT  * FROM abonos WHERE cuenta='$cuenta' and fechab='$datesab' ");
                 while($rowab=mysqli_fetch_array($qry)){
                     $id=$rowab['id'];
                     $cuenta=$rowab['cuenta'];

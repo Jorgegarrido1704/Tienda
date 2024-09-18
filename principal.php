@@ -55,6 +55,13 @@ if($_SESSION['usuario']){
     <div class="links">
     <a href="empleados/index.php" id="btn"><button><h2>Empleados</h2></button></a>
     <a href="rep/Reportes.php" id="btn"><button><h2>Reportes</h2></button></a>
+    <?php 
+    if($_SESSION['usuario']=='Admin' or $_SESSION['usuario']=='Karla'){ ?>
+        <a href="modi/index.php" id="btn"><button><h2>Modificaciones</h2></button></a>
+    <?php }
+    ?>
+
+
 </div>
 </body>
 </html>
