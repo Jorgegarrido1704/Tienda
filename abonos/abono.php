@@ -144,7 +144,25 @@ img{
             <td><input type="submit" name="enviar" id="enviar" value="abonar"></td>
     </form>
         </tr>
+        <tr></tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Intereses Moratorios</td>
+            <form action="intereses.php" method="POST">
+            <td><input type="number" name="interes" id="interes" value="0" min="1" step="1">
+          
+            <input type="hidden" name="cuenta" id="cuenta" value="<?php echo $cuenta;?>">  
+        </td>
+            <td><input type="submit" name="enviar" id="enviar" value="Agregar interes"></td>
+            </form>
+        </tr>
     </tbody>
+
 </table>
 
 

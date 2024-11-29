@@ -94,7 +94,10 @@ if($numrows>0){
 }else{       for($i=0;$i<$numprod;$i++){
             $qryartp=mysqli_query($con,"SELECT * FROM inventario WHERE product='$art[$i]'" );
             while($row=mysqli_fetch_array($qryartp)){     if($plazo==0){$pred=$row['CONTADO'];$semanal=0;}   else if($plazo>0){     $pred=$row['precio'.$plazo];$semanal=$row['semanal'.$plazo];}
-                $engd=round($eng/$numprod);
+            if($eng>0){
+                $engd=round($eng/$numprod);}
+                else{
+            $engd=round($eng/$numprod);}
                 $saldd=$pred-$engd;}  
                 if($plazo==0){    
      $qryventa=mysqli_query($con,"INSERT INTO `venta`( `fecha`, `semanal`, `meses`, `ruta`, `cuenta`, `cliente`, `aval`, `domcli`, `espo`, `domaval`, `col`, `ref2`, `domre2`, `promotor`, `ref1`, `vendedor`, `cobrador`, `domref1`, `entrego`, `cantArt`, `articulo`, `precio`, `enganche`, `saldo`) VALUES ('$date','$semanal','$plazo','$ruta','$cuenta','$cliente','$aval','$Dclient','$espo','$Daval','$col','$ref2','$domref2','$promotor','$ref1','$vendedor','$cobrador','$domref1','$entreg','$cantidad[$i]','$art[$i]','$pred','$engd','0')");
