@@ -5,6 +5,7 @@ if(!$_SESSION['usuario']){
     header("location:../index.html");
 }else{
     $modi=isset($_POST['recibo'])?$_POST['recibo']:"";
+    $cu=isset($_POST['cuent'])?$_POST['cuent']:"";
    // echo $modi;
 $cuenta=isset($_POST['cuenta'])?$_POST['cuenta']:"";
 $cli=isset($_POST['cliente'])?$_POST['cliente']:"";
@@ -118,7 +119,7 @@ td{
             </thead>
             <tbody>
                 <?php 
-                $qry=mysqli_query($con,"SELECT * FROM abonos WHERE NoRec='$modi' ");
+                $qry=mysqli_query($con,"SELECT * FROM abonos WHERE NoRec='$modi' and cuenta='$cu' ");
                 $rowab=mysqli_fetch_assoc($qry);
                     $id=$rowab['id'];
                     $cuenta=$rowab['cuenta'];

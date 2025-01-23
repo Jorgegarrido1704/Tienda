@@ -208,7 +208,9 @@ img{
                     <td><?php echo $cuenta;?></td>
                     <td><?php echo $abonos;?></td>
                     <td><?php echo $recibo;?></td>
-                    <td><form action="modabono.php" method="POST"><input type="hidden" name="recibo" id="recibo" value="<?php echo $recibo;?>">
+                    <td><form action="modabono.php" method="POST">
+                    <input type="hidden" name="cuent" id="cuent" value="<?php echo $cuenta;?>">
+                        <input type="hidden" name="recibo" id="recibo" value="<?php echo $recibo;?>">
                     <input type="submit" name="enviar" id="enviar" value="Modificar"></form></td>
                 </tr>
                 <?php }} ?>
