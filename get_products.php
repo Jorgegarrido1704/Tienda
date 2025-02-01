@@ -4,7 +4,7 @@ require "app/conection.php";
 
 if (isset($_GET['category'])) {
     $category = $_GET['category'];
-    $qry = mysqli_query($con, "SELECT id, product FROM inventario WHERE category = '$category'");
+    $qry = mysqli_query($con, "SELECT id, product FROM inventario WHERE category = '$category' and product LIKE '%%-2025'");
     $products = array();
 
     if ($qry) {
