@@ -33,17 +33,17 @@ if($id_r>0){
         $precio=$rowventas['precio'];
         $enganche=$rowventas['enganche'];
         $salt=$precio-$enganche;
-       // echo $id_venta."-".$abono."-".$saldoart."-".$precio."-".$enganche."-".$salt."<br>";
+      
         if($salt>($saldoart+$abono)){
             $saldup=$saldoart+$abono;
-          //  echo $saldup."<br>";
+       
             $updasaldo=mysqli_query($con,"UPDATE venta SET saldo=$saldup WHERE id='$id_venta' and cuenta='$cuenta'  ");
            $abono=0;
         }else if($salt<=($saldoart+$abono) and $abono>0){
             
             $updasaldo=mysqli_query($con,"UPDATE venta SET saldo=$salt WHERE id='$id_venta' and cuenta='$cuenta'  ");
             $abono=$abono-($salt-$saldoart);
-        //    echo "Abono: ".$abono."-".$salt."<br>";
+        
         }
         if($buscarticulo){
             $deleteabono=mysqli_query($con,"DELETE FROM abonos WHERE id='$id_r'");
@@ -116,6 +116,8 @@ td{
                 <th>Cuenta</th>
                 <th>Abono</th> 
                 <th>No° de recibo</th>  
+                <th>Modificar</th>
+                <th>Eliminar</th>
             </thead>
             <tbody>
                 <?php 

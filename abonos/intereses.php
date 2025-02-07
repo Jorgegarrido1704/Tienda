@@ -6,7 +6,7 @@ require "../app/conection.php";
  $interes=isset($_POST['interes'])?$_POST['interes']:"";
  $fecha=date("d-m-Y H:i");
 
-mysqli_query($con,"INSERT INTO `interes`( `id_cuenta`, `interes`, `fecha`) VALUES ('$cuenta','$interes','$fecha')");
+mysqli_query($con,"INSERT INTO `interes`( `cuenta`, `interes`, `fecha`) VALUES ('$cuenta','$interes','$fecha')");
 $datos=mysqli_query($con,"SELECT * FROM `historico` WHERE `cuenta` = '$cuenta'");
 while($row=mysqli_fetch_array($datos)){
     $saldo=$row['saldo'];

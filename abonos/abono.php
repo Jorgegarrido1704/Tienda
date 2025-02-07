@@ -21,7 +21,7 @@ if($cli!="" and $abono!="" and $resto!=""){
    $sqy=mysqli_query($con,"UPDATE  historico SET saldo='$resto' WHERE cuenta='$cuenta' and cliente='$cli'");
     if($sqy){
         $sqy=mysqli_query($con,"INSERT INTO `abonos`( `cuenta`, `client`, `fechab`, `abono`, `NoRec`) VALUES ('$cuenta','$cli','$today','$abono','$recibo')");
-    }
+    
         
     $sqyventa=mysqli_query($con,"SELECT * FROM venta WHERE cuenta='$cuenta' and cliente='$cli' and saldo>0 ORDER BY saldo asc");
     $rowsnum=mysqli_num_rows($sqyventa);
@@ -42,8 +42,7 @@ if($cli!="" and $abono!="" and $resto!=""){
        // echo "numOfRows Change = ".$rowsnum."<br>";
         
     }
-}   
-
+}   }
 }
 ?>
 <!DOCTYPE html>
@@ -130,7 +129,7 @@ img{
                 <td><?php echo $semanal;?></td>
             <td><?php echo $saldo;?></td>
             <td><input type="number" name="abono" id="abono" value="0" min="0" required onchange="return abono()"></td>
-            <td><input type="number" name="resto" id="resto" value="0" min="0" required></td>
+            <td><input type="number" name="resto" id="resto" value="0" min="0"  readonly></td>
             <form action="abono.php" method="POST">
              <td><input type="number" name="recibo" id="recibo" value="0" min="1" required></td>   
             <input type="hidden" name="rest" id="rest" >
@@ -182,7 +181,7 @@ img{
                 <?php 
                 $i=0;
                 $fechas=[];
-                $buscarFecha=mysqli_query($con,"SELECT fechab FROM abonos WHERE cuenta='$cuenta' ");
+                $buscarFecha=mysqli_query($con,"SELECT DISTINCT fechab FROM abonos WHERE cuenta='$cuenta' ");
                 while($rowfecha=mysqli_fetch_array($buscarFecha)){
                     $fechas[$i]=strtotime($fechabonos=$rowfecha['fechab']);
                     $i++;
