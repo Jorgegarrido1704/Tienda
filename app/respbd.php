@@ -28,7 +28,7 @@ function backUpDatasbaseTables($dhHost, $dhUser, $dhPassword, $dbname, $tables='
                     $value = str_replace("\n", "\\n", $value);
 
                     if (isset($value)) {
-                        $return .= '"' . $value . '",';
+                        $return .= '"' . $value . '"';
                     } else {
                         $return .= '""';
                     }
