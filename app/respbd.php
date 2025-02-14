@@ -22,7 +22,7 @@ function backUpDatasbaseTables($dhHost, $dhUser, $dhPassword, $dbname, $tables='
         for ($i = 0; $i < $numColumns; $i++) {
             while ($row = $result->fetch_assoc()) {
                 $return .= "INSERT INTO $table VALUES (";
-
+                $numRow=0;
                 foreach ($row as $column => $value) {
                     $value = addslashes($value);
                     $value = str_replace("\n", "\\n", $value);
@@ -30,10 +30,11 @@ function backUpDatasbaseTables($dhHost, $dhUser, $dhPassword, $dbname, $tables='
                     if (isset($value)) {
                         $return .= '"' . $value . '",';
                     } else {
-                        $return .= '"",';
+                        $return .= '""';
                     }
 
-                    if ($column < ($numColumns - 1)) {
+                    $numRow++;
+                    if ($numRow < count($row)) {
                         $return .= ',';
                     }
                 }
@@ -46,7 +47,7 @@ function backUpDatasbaseTables($dhHost, $dhUser, $dhPassword, $dbname, $tables='
     }
 
     // Save file
-    $handle = fopen('../../resp-tienda/db-backup' . time() . '.sql', 'w+');
+    $handle = fopen('../../resp-tienda/db-backup.sql', 'w+');
     fwrite($handle, $return);
     fclose($handle);
 }
