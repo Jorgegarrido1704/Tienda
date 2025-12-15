@@ -47,69 +47,83 @@ if($cli!="" and $abono!="" and $resto!=""){
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abono</title>
     <style>
-    body{
+    body {
         width: 100%;
         background-color: blanchedalmond;
     }
-.title{
-    font-size: xx-large;
-    align-items: center;
-    text-align: center;
-}
-.links{
-    align-items: center;
-    align-self: center;
-    text-align: center;
-    padding-top: 100px;
-}
-#btn{
-    
-    padding-right: 20px;
-}
-label{
-    font: bold;
-}
-table{
-    border: 2px lightslategray solid;
-    width: 100%;
-}
-th{
-    border: 1px lightblue solid;
-}
-td{
-    align-items: center;
-    text-align: center;
-    border-bottom: 1px lightblue solid;
-}
-img{
-    width: 50px;
-    height: 50px;
-}
-</style>
+
+    .title {
+        font-size: xx-large;
+        align-items: center;
+        text-align: center;
+    }
+
+    .links {
+        align-items: center;
+        align-self: center;
+        text-align: center;
+        padding-top: 100px;
+    }
+
+    #btn {
+
+        padding-right: 20px;
+    }
+
+    label {
+        font: bold;
+    }
+
+    table {
+        border: 2px lightslategray solid;
+        width: 100%;
+    }
+
+    th {
+        border: 1px lightblue solid;
+    }
+
+    td {
+        align-items: center;
+        text-align: center;
+        border-bottom: 1px lightblue solid;
+    }
+
+    img {
+        width: 50px;
+        height: 50px;
+    }
+    </style>
 </head>
+
 <body>
-<div><small><a href="clientes.php"><button>Atras</button></a></small>
-<button><a href="abonosCli.php?cuenta=<?php echo $cuenta?>"><img src="excel.jpg" alt="" id="excel_client"></a></button></div>
-    <div align="center"><h1>Formato de abono</h1></div>
-<table>
-    <thead>
-    <th>Cliente</th>
-    <th>Cuenta</th>
-    <th>Abono semanal</th>
-    <th>Saldo anterio</th>
-    <th>Abono</th>
-    <th>Nuevo saldo</th>
-     <th>No° de recibo</th>  
-     <th>Fecha</th>
-     <th>Abonoar</th>
-    </thead>
-    <tbody>
-        <?php 
+    <div><small><a href="clientes.php"><button>Atras</button></a></small>
+        <button><a href="abonosCli.php?cuenta=<?php echo $cuenta?>"><img src="excel.jpg" alt=""
+                    id="excel_client"></a></button>
+    </div>
+    <div align="center">
+        <h1>Formato de abono</h1>
+    </div>
+    <table>
+        <thead>
+            <th>Cliente</th>
+            <th>Cuenta</th>
+            <th>Abono semanal</th>
+            <th>Saldo anterio</th>
+            <th>Abono</th>
+            <th>Nuevo saldo</th>
+            <th>No° de recibo</th>
+            <th>Fecha</th>
+            <th>Abonoar</th>
+        </thead>
+        <tbody>
+            <?php 
         if($cuenta!=""){
         $sqy=mysqli_query($con,"SELECT * FROM historico WHERE cuenta='$cuenta'");}else{
             header("location:../principal.php");
@@ -121,60 +135,63 @@ img{
             $semanal=$row['semanal'];
         }
         ?>
-        <tr>
-           
-            <td><?php echo $cli;?></td>
-            <td><?php echo $cuenta;?></td>
-           <!-- <td><?php echo $art;?></td>-->
+            <tr>
+
+                <td><?php echo $cli;?></td>
+                <td><?php echo $cuenta;?></td>
+                <!-- <td><?php echo $art;?></td>-->
                 <td><?php echo $semanal;?></td>
-            <td><?php echo $saldo;?></td>
-            <td><input type="number" name="abono" id="abono" value="0" min="0" required onchange="return abono()"></td>
-            <td><input type="number" name="resto" id="resto" value="0" min="0"  readonly></td>
-            <form action="abono.php" method="POST">
-             <td><input type="number" name="recibo" id="recibo" value="0" min="1" required></td>   
-            <input type="hidden" name="rest" id="rest" >
-            <input type="hidden" name="abo" id="abo" >
-           
-            <input type="hidden" name="art" id="art" value="<?php echo $art;?>">
-            <input type="hidden" name="client" id="client" value="<?php echo $cli;?>">
-            <input type="hidden" name="cuenta" id="cuenta" value="<?php echo $cuenta;?>">    
-            <input type="hidden" name="saldo" id="saldo" value="<?php echo $saldo;?>">
-            <td><input type="date" name="today" id="today" required></td>
-            <td><input type="submit" name="enviar" id="enviar" value="abonar"></td>
-    </form>
-        </tr>
-        <tr></tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>Intereses Moratorios</td>
-            <form action="intereses.php" method="POST">
-            <td><input type="number" name="interes" id="interes" value="0" min="1" step="1">
-          
-            <input type="hidden" name="cuenta" id="cuenta" value="<?php echo $cuenta;?>">  
-        </td>
-            <td><input type="submit" name="enviar" id="enviar" value="Agregar interes"></td>
-            </form>
-        </tr>
-    </tbody>
+                <td><?php echo $saldo;?></td>
+                <td><input type="number" name="abono" id="abono" value="0" min="0" required onchange="return abono()">
+                </td>
+                <td><input type="number" name="resto" id="resto" value="0" min="0" readonly></td>
+                <form action="abono.php" method="POST">
+                    <td><input type="text" name="recibo" id="recibo" value="0" required></td>
+                    <input type="hidden" name="rest" id="rest">
+                    <input type="hidden" name="abo" id="abo">
 
-</table>
+                    <input type="hidden" name="art" id="art" value="<?php echo $art;?>">
+                    <input type="hidden" name="client" id="client" value="<?php echo $cli;?>">
+                    <input type="hidden" name="cuenta" id="cuenta" value="<?php echo $cuenta;?>">
+                    <input type="hidden" name="saldo" id="saldo" value="<?php echo $saldo;?>">
+                    <td><input type="date" name="today" id="today" required></td>
+                    <td><input type="submit" name="enviar" id="enviar" value="abonar"></td>
+                </form>
+            </tr>
+            <tr></tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Intereses Moratorios</td>
+                <form action="intereses.php" method="POST">
+                    <td><input type="number" name="interes" id="interes" value="0" min="1" step="1">
+
+                        <input type="hidden" name="cuenta" id="cuenta" value="<?php echo $cuenta;?>">
+                    </td>
+                    <td><input type="submit" name="enviar" id="enviar" value="Agregar interes"></td>
+                </form>
+            </tr>
+        </tbody>
+
+    </table>
 
 
 
-    <div align="center"><h1>Historial de abonos</h1></div>
+    <div align="center">
+        <h1>Historial de abonos</h1>
+    </div>
     <div>
         <table>
             <thead>
                 <th>Fecha</th>
                 <th>Cuenta</th>
                 <th>Cliente</th>
-                <th>Abono</th> 
-                <th>No° de recibo</th>  
+                <th>Abono</th>
+                <th>No° de recibo</th>
                 <th>Modificar</th>
             </thead>
             <tbody>
@@ -207,37 +224,43 @@ img{
                     <td><?php echo $cuenta;?></td>
                     <td><?php echo $abonos;?></td>
                     <td><?php echo $recibo;?></td>
-                    <td><form action="modabono.php" method="POST">
-                    <input type="hidden" name="cuent" id="cuent" value="<?php echo $cuenta;?>">
-                        <input type="hidden" name="recibo" id="recibo" value="<?php echo $recibo;?>">
-                    <input type="submit" name="enviar" id="enviar" value="Modificar"></form></td>
+                    <td>
+                        <form action="modabono.php" method="POST">
+                            <input type="hidden" name="cuent" id="cuent" value="<?php echo $cuenta;?>">
+                            <input type="hidden" name="recibo" id="recibo" value="<?php echo $recibo;?>">
+                            <input type="submit" name="enviar" id="enviar" value="Modificar">
+                        </form>
+                    </td>
                 </tr>
                 <?php }} ?>
             </tbody>
         </table>
     </div>
 </body>
+
 </html>
 <script>
-   
-    function abono(){
-   
-        var saldo=document.getElementById("saldo").value;
-        var abono=document.getElementById("abono").value;
-        document.getElementById("abo").value=document.getElementById("abono").value;
-        if(abono<=0){
-            alert("El abono no puede ser menor o igual a 0 ");
-            document.getElementById("abono").value=0;
-        }
-        if(abono>0){
-        if( saldo-abono>=0){
-            document.getElementById("resto").value=saldo-abono;
-            document.getElementById("rest").value=document.getElementById("resto").value;
-      
-        }else{
-            alert("El abono es mayor que el capital");
-        } }else{ document.getElementById("resto").value=saldo;}
+function abono() {
+
+    var saldo = document.getElementById("saldo").value;
+    var abono = document.getElementById("abono").value;
+    document.getElementById("abo").value = document.getElementById("abono").value;
+    if (abono <= 0) {
+        alert("El abono no puede ser menor o igual a 0 ");
+        document.getElementById("abono").value = 0;
     }
+    if (abono > 0) {
+        if (saldo - abono >= 0) {
+            document.getElementById("resto").value = saldo - abono;
+            document.getElementById("rest").value = document.getElementById("resto").value;
+
+        } else {
+            alert("El abono es mayor que el capital");
+        }
+    } else {
+        document.getElementById("resto").value = saldo;
+    }
+}
 </script>
 
 <?php } ?>
