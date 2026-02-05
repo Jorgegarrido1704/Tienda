@@ -53,5 +53,5 @@ function backUpDatasbaseTables($dhHost, $dhUser, $dhPassword, $dbname, $tables='
 }
 
 backUpDatasbaseTables('localhost', 'root', '', 'tienda');
-header("location:../principal.php");
+header("location:../ajustes/ajusteAbonos.php");
 ?>
