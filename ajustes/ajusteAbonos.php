@@ -20,5 +20,5 @@ require "../app/conection.php";
          
     }
 
-header("location:../principal.php");
+header("location:../app/respdb.php");
 

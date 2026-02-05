@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     session_destroy(); // Destroy the session
 
-    header("location: ../index.html");
+     header("location: ../ajustes/ajusteAbonos.php");
 } else {
     header("location: ../index.html"); // Redirect if not a POST request and no session user
 }
