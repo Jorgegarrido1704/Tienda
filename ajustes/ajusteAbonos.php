@@ -2,7 +2,7 @@
 
 require "../app/conection.php";
 
-    $cuentas= mysqli_query($con,"SELECT cuenta,precio,enganche,saldo FROM historico WHERE saldo>0 AND nulo ='' AND precio>0 ORDER BY cliente ASC");
+    $cuentas= mysqli_query($con,"SELECT cuenta,precio,enganche,saldo FROM historico WHERE meses>0 AND nulo ='' AND precio>0 ORDER BY cliente ASC");
     
     while($row=mysqli_fetch_array($cuentas)){
        $cuenta=$row['cuenta'];
